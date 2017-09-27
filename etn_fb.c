@@ -54,6 +54,8 @@ u32 *fpga_regs;
 #define LCD_SET_SIZE(size)  LCD_WRITE(ADRR_REG_VIDEO_MEM_SIZE,size)
 #define LCD_SET_REFRESH_RATE(refresh_rate)  LCD_WRITE(ADRR_REG_REFRESH_RATE,refresh_rate)
 
+#define DISPLAY_WIDTH                     (320)
+#define DISPLAY_HEIGHT                    (240)
 
 
 static void LCD_WRITE(int reg, u32 val)
@@ -220,7 +222,7 @@ void LCD_Init(void)
 		 LCD_WR_DATA(0X00a2);
 
 	LCD_WR_REG(0x0036);    // Memory Access Control
-		LCD_WR_DATA(0x0008);//48
+		LCD_WR_DATA(0x0068);//48
 //  	        LCD_WR_DATA(MY | MX | MV | BGR);
 
 	LCD_WR_REG(0x00F2);    // 3Gamma Function Disable
@@ -263,13 +265,13 @@ void LCD_Init(void)
 		LCD_WR_DATA(0x0036);
 		LCD_WR_DATA(0x000f);
 
-	LCD_WR_REG(0x002A);
+	LCD_WR_REG(0x002B);
 		LCD_WR_DATA(0x0000);
 		LCD_WR_DATA(0x0000);
 		LCD_WR_DATA(0x0000);
 		LCD_WR_DATA(0x00ef);
 
-	 LCD_WR_REG(0x002B);
+	 LCD_WR_REG(0x002A);
 		LCD_WR_DATA(0x0000);
 		LCD_WR_DATA(0x0000);
 		LCD_WR_DATA(0x0001);
@@ -434,7 +436,7 @@ static int etn_fb_probe(struct platform_device *pdev)
 
 	dma_addr_t dma_addr;
 
-      	printk(KERN_ERR DEVNAME":video driver version %s- %s\n", __DATE__, __TIME__);
+      	printk(KERN_ALERT DEVNAME":video driver version %s- %s\n", __DATE__, __TIME__);
 	pdev->dev.dma_mask = &platform_dma_mask;
 	pdev->dev.coherent_dma_mask = DMA_BIT_MASK(32);
 

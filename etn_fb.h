@@ -7,8 +7,8 @@
 #define FPGA_REGS_BASE                    (0xff200000)
 #define REGSIZE                           (128)
 
-#define DISPLAY_WIDTH                     (240)
-#define DISPLAY_HEIGHT                    (320)
+//#define DISPLAY_WIDTH                     (240)
+//#define DISPLAY_HEIGHT                    (320)
 #define DISPLAY_BPP                       (16)
 
 #define MIN_FPS                           (1)
